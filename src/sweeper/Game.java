@@ -2,11 +2,18 @@ package sweeper;
 
 public class Game {
 
-    public Game (int cols, int rows) {
+    Bomb bomb;
+
+    public Game (int cols, int rows, int bombs) {
         Ranges.setSize(new Coord(cols, rows));
+        bomb = new Bomb(bombs);
+    }
+
+    public void start () {
+        bomb.start();
     }
 
     public Box getBox (Coord coord) {
-        return Box.values()[(2 * coord.x + coord.y) % Box.values().length];
+        return bomb.get(coord);
     }
 }
