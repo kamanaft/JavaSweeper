@@ -2,9 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import sweeper.Box;
 import sweeper.Coord;
+import sweeper.Game;
 import sweeper.Ranges;
 
 public class JavaSweeper extends JFrame {
+
+    private Game game;
 
     private final int COLS = 9;
     private final int ROWS = 9;
@@ -19,7 +22,7 @@ public class JavaSweeper extends JFrame {
     }
 
     private JavaSweeper () {
-        Ranges.setSize(COLS, ROWS);
+        game = new Game (COLS, ROWS);
         setImages();
         initPanel();
         initFrame();
@@ -30,7 +33,7 @@ public class JavaSweeper extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 for (Coord coord : Ranges.getAllCoords()) {
-                    g.drawImage((Image)Box.values()[(2 * coord.x + coord.y) % Box.values().length].image,
+                    g.drawImage((Image) game.getBox(coord).image,
                             coord.x * IMAGE_SIZE,
                             coord.y * IMAGE_SIZE, this);
                 }

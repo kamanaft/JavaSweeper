@@ -25,8 +25,4 @@ public class Ranges {
         return size;
     }
 
-    static public void setSize (int cols, int rows) {
-        Coord size = new Coord (cols, rows);
-        setSize(size);
-    }
 }
